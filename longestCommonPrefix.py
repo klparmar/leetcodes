@@ -9,7 +9,5 @@ class Solution:
                 elif i[j] != prefix[j]:
                     prefix = prefix[:j]
                     break
-                    
-            if prefix == "":
-                return prefix
+
         return prefix
