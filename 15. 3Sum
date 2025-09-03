@@ -1,0 +1,51 @@
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var threeSum = function(nums) {
+
+    let target = nums[0];
+     let targetIndex = 0;
+
+
+    let found = new Set();
+
+    let foundTriplets = [];
+
+    let currDiff = new Set();
+
+    for(let i = 0; i<nums.length; i++){
+
+        if( currDiff.has(nums[i]) ){
+            found.add(target);
+            found.add(nums[i]);
+            found.add((target + nums[i])  * -1)
+
+            foundTriplets.push([target, nums[i], (target + nums[i])  * -1]);
+
+            // console.log([target, nums[i], (target + nums[i])  * -1])
+
+            nums.some((num, index) => {
+                if(!found.has(num)){ 
+                    target = num; 
+                    targetIndex = index;
+                    i = -1; 
+                    return true}
+                else if(index === nums.length){
+                    i = nums.length; return false;
+                }
+                else{ return false;}
+            })
+
+            
+            currDiff.clear();
+        }
+        else if (targetIndex != i) currDiff.add((target + nums[i])  * -1);
+
+        // console.log(target, currDiff, i, nums[i])
+    }
+
+// console.log("found - ",found)
+    return foundTriplets
+    
+};
