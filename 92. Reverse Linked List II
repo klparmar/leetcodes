@@ -1,0 +1,50 @@
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} left
+ * @param {number} right
+ * @return {ListNode}
+ */
+var reverseBetween = function(head, left, right) {
+    let cnt = 1
+    let curr = head;
+    let newEnd = null;
+
+    if (!head.next || left === right) return head;
+
+    while(curr){
+        if(cnt === left - 1){
+            newEnd = curr;
+        }
+        if(cnt === left) break;
+
+        curr = curr.next;
+        cnt++;
+    }
+    let prev = null;
+    let next = null;
+    let newHead = curr;
+
+    while(cnt <= right){
+        
+        next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        if(cnt === right){
+            newHead.next = next;
+            if(newEnd === null) return curr;
+            newEnd.next = curr;
+            break;
+        }
+        curr = next;
+        cnt++;
+    }
+
+    return head
+};
