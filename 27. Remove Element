@@ -1,0 +1,31 @@
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function(nums, val) {
+    let left = 0;
+    let right = nums.length - 1;
+
+    // if (nums.length == 1 && val == nums[0]) return 0;
+
+    while(left <= right){
+        if(nums[right] === val){
+            right--;
+        }
+        else if(nums[left] === val){
+            let swap = nums[right];
+            nums[right] = nums[left];
+            nums[left] = swap;
+            left++;
+        } else {
+            left++
+        }
+
+        // console.log(nums, right, left)
+    }
+
+    if(left > right) return right + 1
+    else return 0
+    
+};
