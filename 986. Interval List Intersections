@@ -1,0 +1,44 @@
+/**
+ * @param {number[][]} firstList
+ * @param {number[][]} secondList
+ * @return {number[][]}
+ */
+var intervalIntersection = function(firstList, secondList) {
+    let p1 = 0;
+    let p2 = 0;
+
+    let soln = [];
+
+
+    while(p1 < firstList.length && p2 < secondList.length){
+        // console.log(soln, p1, p2)
+        if(firstList[p1][0] < secondList[p2][0]){
+            if(firstList[p1][1] >= secondList[p2][0]){
+                if(firstList[p1][1] > secondList[p2][1]){
+                    soln.push([secondList[p2][0], secondList[p2][1]]);
+                    p2++;
+                    continue;
+                }
+                else soln.push([secondList[p2][0], firstList[p1][1]]);
+                
+            }
+            p1++;
+                continue;
+        } else if (firstList[p1][0] <= secondList[p2][1]){
+            if(firstList[p1][1] < secondList[p2][1]){
+                soln.push([firstList[p1][0],firstList[p1][1]]);
+                p1++;
+                continue;
+                
+            }else if(firstList[p1][1] >= secondList[p2][1]){
+                soln.push([firstList[p1][0],secondList[p2][1]]);
+                
+            } 
+                // p1++; continue;
+        } 
+            p2++;
+        
+    }
+
+    return soln
+};
