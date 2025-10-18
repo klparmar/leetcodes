@@ -1,0 +1,57 @@
+
+var MyStack = function() {
+    this.q = [null];
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MyStack.prototype.push = function(x) {
+
+    let temp = null;
+    this.q.push(x);
+    while(this.q[0] !== null){
+        temp = this.q.shift()
+        this.q.push(temp)
+    } 
+
+    this.q.shift();
+    this.q.push(null);
+    //   console.log(this.q, x)
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.pop = function() {
+    // if(q[0] === null) return nul
+    // console.log("pop,", this.q)
+ return this.q.shift();
+
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.top = function() {
+    // console.log("top", this.q)
+    return this.q[0];
+};
+
+/**
+ * @return {boolean}
+ */
+MyStack.prototype.empty = function() {
+    // console.log("empty,", this.q)
+    return this.q[0] === null;
+};
+
+/** 
+ * Your MyStack object will be instantiated and called as such:
+ * var obj = new MyStack()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.empty()
+ */
